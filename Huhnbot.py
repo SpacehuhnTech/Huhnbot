@@ -5,6 +5,9 @@ import os
 import subprocess
 import sys
 
+# test
+
+
 class RoleReactClient(discord.Client):
     # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
     def __init__(self, *args, **kwargs):
@@ -132,7 +135,7 @@ async def on_message(message):
                     output = process.communicate()[0].decode("utf-8")
                 except:
                     print("git pull not working :(")
-                await client.get_channel(733343988261584896).send(f"Huhnbot updated by {message.author} ```{output}```")
+                await client.get_channel(817402120063549451).send(f"Huhnbot updated by {message.author} ```{output}```")
                 os.execv(sys.executable, ['python'] + sys.argv)
             else:
                 await message.channel.send("lol nope")
