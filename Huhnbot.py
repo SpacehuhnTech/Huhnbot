@@ -1,16 +1,21 @@
-#https://discord.com/oauth2/authorize?client_id=813038801211228201&scope=bot
+# https://discord.com/oauth2/authorize?client_id=813038801211228201&scope=bot
 
 import discord
 import os
 
-class RoleReactClient(discord.Client):  # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
+# stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
+
+
+class RoleReactClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.role_message_id = 819957058719711232  # ID of message that can be reacted to to add role
+        # ID of message that can be reacted to to add role
+        self.role_message_id = 819957058719711232
         self.emoji_to_role = {
-            733382938657554555: 736544036151623690,  # ID of role associated with partial emoji object 'spacehuhn_head' -> Huhn
-            #804771444130840617: 818520356754292737  # ID of role associated with partial emoji object 'stonk' -> testBot
+            # ID of role associated with partial emoji object 'spacehuhn_head' -> Huhn
+            733382938657554555: 736544036151623690,
+            # 804771444130840617: 818520356754292737  # ID of role associated with partial emoji object 'stonk' -> testBot
         }
 
     async def on_raw_reaction_add(self, payload):
@@ -20,7 +25,7 @@ class RoleReactClient(discord.Client):  # stolen from https://github.com/Rapptz/
             return
 
         try:
-            #print(payload.emoji.id)
+            # print(payload.emoji.id)
             role_id = self.emoji_to_role[payload.emoji.id]
         except KeyError:
             # If the emoji isn't the one we care about then exit as well.
@@ -79,19 +84,23 @@ class RoleReactClient(discord.Client):  # stolen from https://github.com/Rapptz/
             # If we want to do something in case of errors we'd do it here.
             pass
 
+
 # This bot requires the members and reactions intents.
 intents = discord.Intents.default()
 intents.members = True
 
 client = RoleReactClient(intents=intents)
 
+
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
 
+
 @client.event
 async def on_message(message):
-    badWords = ["fuck", "shit", "nigg", "fag", "cunt", "sex"] #list of unwanted profanities
+    # list of unwanted profanities
+    badWords = ["fuck", "shit", "nigg", "fag", "cunt", "sex"]
     noBadWord = True
 
     for word in badWords:
@@ -100,19 +109,20 @@ async def on_message(message):
             noBadWord = False
             break
 
-    #only proceed if author didn't swear
+    # only proceed if author didn't swear
     if noBadWord:
         if message.author == client.user:
             return
 
         elif client.user.mentioned_in(message) and ("shut up" in message.content):
             if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
-                await client.get_channel(733343988261584896).send("Huhnbot deactivated by " + str(message.author))  # ID for moderation channel                
+                # ID for moderation channel
+                await client.get_channel(733343988261584896).send("Huhnbot deactivated by " + str(message.author))
                 exit()
             else:
                 await message.channel.send("lol nope")
 
-        #elif client.user.mentioned_in(message) and ("post" in message.content):
+        # elif client.user.mentioned_in(message) and ("post" in message.content):
         #    if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
         #        await client.get_channel(733343036938911795).send(":warning: Click on the spacehuhn emoji below to become a server member, unlock all channels and connect with the community")  # ID for welcome channel
 
@@ -121,7 +131,7 @@ async def on_message(message):
 
         elif client.user.mentioned_in(message) and ("sus" in message.content):
             await message.channel.send(discord.utils.find(lambda r: r.name == "suspicious", message.guild.emojis))
-        
+
         elif client.user.mentioned_in(message) and (("like waffles" in message.content) or ("love waffles" in message.content)):
             await message.channel.send("yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)))
 
