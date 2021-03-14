@@ -1,6 +1,7 @@
 #https://discord.com/oauth2/authorize?client_id=813038801211228201&scope=bot
 
 import discord
+import os
 
 class RoleReactClient(discord.Client):  # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
     def __init__(self, *args, **kwargs):
@@ -133,4 +134,14 @@ async def on_message(message):
         elif client.user.mentioned_in(message):
             await message.channel.send("Hmmm?")
 
-client.run("token")
+token_path = 'token.txt'
+
+if os.path.exists(token_path):
+    with open(token_path, 'r') as file:
+        token = file.read().replace('\n', '')
+else:
+    token = input("Discord Token:")
+    with open(token_path, 'w') as file:
+        file.write(token)
+
+client.run(token)
