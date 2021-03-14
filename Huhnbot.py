@@ -2,6 +2,8 @@
 
 import discord
 import os
+import subprocess
+import sys
 
 # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
 
@@ -116,9 +118,22 @@ async def on_message(message):
 
         elif client.user.mentioned_in(message) and ("shut up" in message.content):
             if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
-                # ID for moderation channel
+             # ID for moderation channel
                 await client.get_channel(733343988261584896).send("Huhnbot deactivated by " + str(message.author))
                 exit()
+            else:
+                await message.channel.send("lol nope")
+
+        elif client.user.mentioned_in(message) and ("update" in message.content):
+            if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
+                try:
+                    process = subprocess.Popen(
+                        ["git", "pull"], stdout=subprocess.PIPE)
+                    output = process.communicate()[0].decode("utf-8")
+                except:
+                    print("git pull not working :(")
+                await client.get_channel(733343988261584896).send(f"Huhnbot updated by {message.author} ```{output}```")
+                os.execv(sys.executable, ['python'] + sys.argv)
             else:
                 await message.channel.send("lol nope")
 
