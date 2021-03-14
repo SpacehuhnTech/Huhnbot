@@ -5,19 +5,19 @@ import os
 import subprocess
 import sys
 
-# stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
-
-
 class RoleReactClient(discord.Client):
+    # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # ID of message that can be reacted to to add role
         self.role_message_id = 819957058719711232
         self.emoji_to_role = {
-            # ID of role associated with partial emoji object 'spacehuhn_head' -> Huhn
             733382938657554555: 736544036151623690,
-            # 804771444130840617: 818520356754292737  # ID of role associated with partial emoji object 'stonk' -> testBot
+            # ID of role associated with partial emoji object 'spacehuhn_head' -> Huhn
+
+            # 804771444130840617: 818520356754292737
+            # ID of role associated with partial emoji object 'stonk' -> testBot
         }
 
     async def on_raw_reaction_add(self, payload):
@@ -116,7 +116,7 @@ async def on_message(message):
         if message.author == client.user:
             return
 
-        elif client.user.mentioned_in(message) and ("shut up" in message.content):
+        elif client.user.mentioned_in(message) and ("shut up" in message.content.lower()):
             if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
              # ID for moderation channel
                 await client.get_channel(733343988261584896).send("Huhnbot deactivated by " + str(message.author))
@@ -124,7 +124,7 @@ async def on_message(message):
             else:
                 await message.channel.send("lol nope")
 
-        elif client.user.mentioned_in(message) and ("update" in message.content):
+        elif client.user.mentioned_in(message) and ("update" in message.content.lower()):
             if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
                 try:
                     process = subprocess.Popen(
@@ -141,20 +141,50 @@ async def on_message(message):
         #    if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
         #        await client.get_channel(733343036938911795).send(":warning: Click on the spacehuhn emoji below to become a server member, unlock all channels and connect with the community")  # ID for welcome channel
 
-        elif client.user.mentioned_in(message) and ("hello" in message.content):
+        elif client.user.mentioned_in(message) and ("hello" in message.content.lower()):
             await message.channel.send("hi :smile:")
 
-        elif client.user.mentioned_in(message) and ("sus" in message.content):
+        elif client.user.mentioned_in(message) and ("good morning" in message.content.lower()):
+            await message.channel.send("moin")
+
+        elif client.user.mentioned_in(message) and ("good day" in message.content.lower()):
+            await message.channel.send(":blush:")
+
+        elif client.user.mentioned_in(message) and ("good evening" in message.content.lower()):
+            await message.channel.send("good evening to you too :grinning:")
+
+        elif client.user.mentioned_in(message) and ("good night" in message.content.lower()):
+            await message.channel.send("bye :yawning_face:")
+
+        elif client.user.mentioned_in(message) and ("sus" in message.content.lower()):
             await message.channel.send(discord.utils.find(lambda r: r.name == "suspicious", message.guild.emojis))
 
-        elif client.user.mentioned_in(message) and (("like waffles" in message.content) or ("love waffles" in message.content)):
+        elif client.user.mentioned_in(message) and (("like waffles" or "love waffles") in message.content.lower()):
             await message.channel.send("yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)))
 
-        elif client.user.mentioned_in(message) and ("bad bot" in message.content):
+        elif client.user.mentioned_in(message) and ("bad bot" in message.content.lower()):
             await message.channel.send(":cry:")
 
-        elif client.user.mentioned_in(message) and ("good bot" in message.content):
+        elif client.user.mentioned_in(message) and ("good bot" in message.content.lower()):
             await message.channel.send(":blush:")
+
+        elif client.user.mentioned_in(message) and ("help" in message.content.lower()):
+            await message.channel.send("Sorry but I can't help you with that yet. Post your problem in the related help channel instead.")
+
+        elif client.user.mentioned_in(message) and (("die" or "seppuku" or "harakiri" or "kill") in message.content.lower()):
+            await message.channel.send("not today")
+
+        elif client.user.mentioned_in(message) and ("space chicken" in message.content.lower()):
+            await message.channel.send(str(discord.utils.find(lambda r: r.name == "spacehuhn", message.guild.emojis)))
+
+        elif client.user.mentioned_in(message) and ("deauther" in message.content.lower()):
+            await message.channel.send("you can download the latest version here: https://github.com/SpacehuhnTech/esp8266_deauther/releases")
+
+        elif client.user.mentioned_in(message) and ("chicken nugget" in message.content.lower()):
+            await message.channel.send("you monster :fearful:")
+
+        elif client.user.mentioned_in(message) and ("meaning of life" in message.content.lower()):
+            await message.channel.send('According to Deep Thought (and Google) the  Answer to the Ultimate Question of Life, the Universe, and Everything is "42".')
 
         elif client.user.mentioned_in(message):
             await message.channel.send("Hmmm?")
