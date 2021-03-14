@@ -86,18 +86,15 @@ class RoleReactClient(discord.Client):
             # If we want to do something in case of errors we'd do it here.
             pass
 
-
 # This bot requires the members and reactions intents.
 intents = discord.Intents.default()
 intents.members = True
 
 client = RoleReactClient(intents=intents)
 
-
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
-
 
 @client.event
 async def on_message(message):
@@ -105,21 +102,21 @@ async def on_message(message):
     badWords = ["fuck", "shit", "nigg", "fag", "cunt", "sex"]
     noBadWord = True
     msg = message.content.lower()
-    mentioned = client.user.mentioned_in(message)
+    pinged = client.user.mentioned_in(message)
 
     for word in badWords:
         if word in msg:
             await message.channel.send(str(message.author.mention) + " HEY, please keep it family friendly!")
             noBadWord = False
             break
-
-    # only proceed if author didn't swear
+    
     if noBadWord:
+        # only proceed if author didn't swear
         if message.author == client.user:
-            return
+            return        
         
-        # only proceed if bot is mentioned
-        if mentioned:
+        if pinged:
+            # only proceed if bot is directly adressed
             if "shut up" in msg:
                 if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
                     # ID for moderation channel
@@ -127,6 +124,7 @@ async def on_message(message):
                     exit()
                 else:
                     await message.channel.send("lol nope")
+                    return
 
             elif "update" in msg:
                 if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
@@ -140,12 +138,15 @@ async def on_message(message):
                     os.execv(sys.executable, ['python'] + sys.argv)
                 else:
                     await message.channel.send("lol nope")
+                    return
 
-            # elif client.user.mentioned_in(message) and ("post" in message.content):
-            #    if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
-            #        await client.get_channel(733343036938911795).send(":warning: Click on the spacehuhn emoji below to become a server member, unlock all channels and connect with the community")  # ID for welcome channel
+            elif "meaning of life" in msg:
+                await message.channel.send('According to Deep Thought (and Google) the  Answer to the Ultimate Question of Life, the Universe, and Everything is "42".')
+                return
 
-            elif "hello" in msg:
+        if pinged or (str(client.user.name) in msg):
+            # proceed if bot is mentioned
+            if "hello" in msg:
                 await message.channel.send("hi :smile:")
 
             elif "good morning" in msg:
@@ -185,13 +186,10 @@ async def on_message(message):
                 await message.channel.send("you can download the latest version here: https://github.com/SpacehuhnTech/esp8266_deauther/releases")
 
             elif "chicken nugget" in msg:
-                await message.channel.send("you monster :fearful:")
+                await message.channel.send("you monster :fearful:")    
 
-            elif "meaning of life" in msg:
-                await message.channel.send('According to Deep Thought (and Google) the  Answer to the Ultimate Question of Life, the Universe, and Everything is "42".')
-
-            elif:
-                await message.channel.send("Hmmm?")
+            else:
+                await message.channel.send("Hmmm?")       
 
 token_path = 'token.txt'
 
