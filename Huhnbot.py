@@ -188,6 +188,9 @@ async def on_message(message):
             elif "chicken nugget" in msg:
                 await message.channel.send("you monster :fearful:")    
 
+            elif "taste" in msg:
+                await message.channel.send("oh no :fearful:")
+
             else:
                 await message.channel.send("Hmmm?")       
 
