@@ -144,11 +144,7 @@ async def on_message(message):
                 await message.channel.send('According to Deep Thought (and Google) the  Answer to the Ultimate Question of Life, the Universe, and Everything is "42".')
                 return
 
-            elif "!name" in msg:
-                await message.channel.send(str(client.user.name))
-                return
-
-        if pinged or (str(client.user.name) in msg):
+        if pinged or (str(client.user.name).lower() in msg):
             # proceed if bot is mentioned
             if "hello" in msg:
                 await message.channel.send("hi :smile:")
