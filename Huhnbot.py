@@ -99,7 +99,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # list of unwanted profanities
-    badWords = ["fuck", "shit", "nigg", "fag", "cunt", "sex"]
+    badWords = ["fuck", "shit", "nigg", "fag", "cunt"]
     noBadWord = True
     msg = message.content.lower()
     pinged = client.user.mentioned_in(message)
