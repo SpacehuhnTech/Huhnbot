@@ -144,6 +144,14 @@ async def on_message(message):
                 await message.channel.send('According to Deep Thought (and Google) the  Answer to the Ultimate Question of Life, the Universe, and Everything is "42".')
                 return
 
+            elif "play a game" in msg:
+                await message.channel.send("Here you go: https://github.com/skickar/ChickenManGame")
+                return
+
+            else:
+                await message.channel.send("Hmmm?")
+                return
+
         if pinged or (str(client.user.name).lower() in msg):
             # proceed if bot is mentioned
             if "hello" in msg:
@@ -189,10 +197,7 @@ async def on_message(message):
                 await message.channel.send("you monster :fearful:")    
 
             elif "taste" in msg:
-                await message.channel.send("oh no :fearful:")
-
-            else:
-                await message.channel.send("Hmmm?")       
+                await message.channel.send("oh no :fearful:")       
 
 token_path = 'token.txt'
 
