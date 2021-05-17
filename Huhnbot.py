@@ -6,6 +6,8 @@ import subprocess
 import sys
 from random import randint
 
+from discord import message
+
 
 class RoleReactClient(discord.Client):
     # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
@@ -92,8 +94,8 @@ class RoleReactClient(discord.Client):
 # This bot requires the members and reactions intents.
 intents = discord.Intents.default()
 intents.members = True
-
 client = RoleReactClient(intents=intents)
+lastMessage = None
 
 
 @client.event
@@ -103,6 +105,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    global lastMessage
     # list of unwanted profanities
     badWords = ["fuck", "shit", "nigg", "fag", "cunt"]
     noBadWord = True
@@ -115,9 +118,9 @@ async def on_message(message):
         "good day": ":blush:",
         "good evening": "good evening to you too :grinning:",
         "good night": "good night :yawning_face:",
-        "sus": discord.utils.find(lambda r: r.name == "suspicious", message.guild.emojis),
-        "like waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)),
-        "love waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)),
+        "sus": str(discord.utils.find(lambda r: r.name == "suspicious", client.get_guild(724901805607223336).emojis)),
+        "like waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", client.get_guild(724901805607223336).emojis)),
+        "love waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", client.get_guild(724901805607223336).emojis)),
         "bad bot": ":cry:",
         "good bot": ":blush:",
         "help": "Sorry but I can't help you with that yet. Post your problem in the related help channel instead.",
@@ -125,11 +128,22 @@ async def on_message(message):
         "seppuku": "not today",
         "harakiri": "not today",
         "kill": "not today",
-        "space chicken": str(discord.utils.find(lambda r: r.name == "spacehuhn", message.guild.emojis)),
+        "space chicken": str(discord.utils.find(lambda r: r.name == "spacehuhn", client.get_guild(724901805607223336).emojis)),
         "deauther": "you can download the latest version here: https://github.com/SpacehuhnTech/esp8266_deauther/releases",
         "chicken nugget": "you monster :fearful:",
         "taste": "oh no :fearful:"
     }
+
+    # spam filtering
+    if lastMessage and (message.content == lastMessage.content) and (message.author == lastMessage.author) and (message.channel == lastMessage.channel) and not message.author.bot:
+        try:
+            await message.author.send("Hi. I've deleted your latest message because it was identical to the message sent before it.")
+        except Exception:
+            pass
+        finally:
+            await message.delete()
+        return
+    lastMessage = message
 
     for word in badWords:
         if word in msg:
