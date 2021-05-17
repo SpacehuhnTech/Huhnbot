@@ -4,6 +4,8 @@ import discord
 import os
 import subprocess
 import sys
+from random import randint
+
 
 class RoleReactClient(discord.Client):
     # stolen from https://github.com/Rapptz/discord.py/blob/master/examples/reaction_roles.py
@@ -86,36 +88,69 @@ class RoleReactClient(discord.Client):
             # If we want to do something in case of errors we'd do it here.
             pass
 
+
 # This bot requires the members and reactions intents.
 intents = discord.Intents.default()
 intents.members = True
 
 client = RoleReactClient(intents=intents)
 
+
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
+
 
 @client.event
 async def on_message(message):
     # list of unwanted profanities
     badWords = ["fuck", "shit", "nigg", "fag", "cunt"]
     noBadWord = True
+    reacted = False
     msg = message.content.lower()
     pinged = client.user.mentioned_in(message)
+    reactionTriggers = {
+        "hello": "hi :smile:",
+        "good morning": "moin",
+        "good day": ":blush:",
+        "good evening": "good evening to you too :grinning:",
+        "good night": "good night :yawning_face:",
+        "sus": discord.utils.find(lambda r: r.name == "suspicious", message.guild.emojis),
+        "like waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)),
+        "love waffles": "yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)),
+        "bad bot": ":cry:",
+        "good bot": ":blush:",
+        "help": "Sorry but I can't help you with that yet. Post your problem in the related help channel instead.",
+        "die": "not today",
+        "seppuku": "not today",
+        "harakiri": "not today",
+        "kill": "not today",
+        "space chicken": str(discord.utils.find(lambda r: r.name == "spacehuhn", message.guild.emojis)),
+        "deauther": "you can download the latest version here: https://github.com/SpacehuhnTech/esp8266_deauther/releases",
+        "chicken nugget": "you monster :fearful:",
+        "taste": "oh no :fearful:"
+    }
 
     for word in badWords:
         if word in msg:
-            await message.channel.send(str(message.author.mention) + " HEY, please keep it family friendly!")
+            await message.channel.send(str(message.author.mention) + "HEY, please keep it family friendly!")
             noBadWord = False
             break
-    
+
     if noBadWord:
         # only proceed if author didn't swear
         if message.author == client.user:
-            return        
-        
-        if pinged:
+            return
+
+        if (str(client.user.name).lower() in msg) or pinged:
+            # proceed if bot is mentioned
+            for key in reactionTriggers:
+                if key in msg:
+                    await message.channel.send(reactionTriggers[key])
+                    reacted = True
+                    break
+
+        if pinged and not reacted:
             # only proceed if bot is directly adressed
             if "shut up" in msg:
                 if discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles:
@@ -148,56 +183,29 @@ async def on_message(message):
                 await message.channel.send("Here you go: https://github.com/skickar/ChickenManGame")
                 return
 
+            elif "i have a question" in msg:
+                temp = randint(0, 6)
+                if temp == 0:
+                    await message.channel.send("yes")
+                elif temp == 1:
+                    await message.channel.send("probably")
+                elif temp == 2:
+                    await message.channel.send("could be")
+                elif temp == 3:
+                    await message.channel.send("maybe")
+                elif temp == 4:
+                    await message.channel.send("I don't think so")
+                elif temp == 5:
+                    await message.channel.send("probably not")
+                elif temp == 6:
+                    await message.channel.send("no")
+                else:
+                    await message.channel.send("I'm not sure")
+                return
+
             else:
                 await message.channel.send("Hmmm?")
                 return
-
-        if pinged or (str(client.user.name).lower() in msg):
-            # proceed if bot is mentioned
-            if "hello" in msg:
-                await message.channel.send("hi :smile:")
-
-            elif "good morning" in msg:
-                await message.channel.send("moin")
-
-            elif "good day" in msg:
-                await message.channel.send(":blush:")
-
-            elif "good evening" in msg:
-                await message.channel.send("good evening to you too :grinning:")
-
-            elif "good night" in msg:
-                await message.channel.send("bye :yawning_face:")
-
-            elif "sus" in msg:
-                await message.channel.send(discord.utils.find(lambda r: r.name == "suspicious", message.guild.emojis))
-
-            elif ("like waffles" in msg) or ("love waffles" in msg):
-                await message.channel.send("yes" + str(discord.utils.find(lambda r: r.name == "partyhuhn", message.guild.emojis)))
-
-            elif "bad bot" in msg:
-                await message.channel.send(":cry:")
-
-            elif "good bot" in msg:
-                await message.channel.send(":blush:")
-
-            elif "help" in msg:
-                await message.channel.send("Sorry but I can't help you with that yet. Post your problem in the related help channel instead.")
-
-            elif ("die" in msg) or ("seppuku" in msg) or ("harakiri" in msg) or ("kill" in msg):
-                await message.channel.send("not today")
-
-            elif "space chicken" in msg:
-                await message.channel.send(str(discord.utils.find(lambda r: r.name == "spacehuhn", message.guild.emojis)))
-
-            elif "deauther" in msg:
-                await message.channel.send("you can download the latest version here: https://github.com/SpacehuhnTech/esp8266_deauther/releases")
-
-            elif "chicken nugget" in msg:
-                await message.channel.send("you monster :fearful:")    
-
-            elif "taste" in msg:
-                await message.channel.send("oh no :fearful:")       
 
 token_path = 'token.txt'
 
