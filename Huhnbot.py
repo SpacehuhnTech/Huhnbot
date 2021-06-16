@@ -135,14 +135,16 @@ async def on_message(message):
     }
 
     # spam filtering
-    if lastMessage and (message.content == lastMessage.content) and (message.author == lastMessage.author) and (message.channel == lastMessage.channel) and not message.author.bot:
-        try:
-            await message.author.send("Hi. I've deleted your latest message because it was identical to the message sent before it.")
-        except Exception:
-            pass
-        finally:
-            await message.delete()
-        return
+    if lastMessage and (message.author == lastMessage.author) and (message.channel == lastMessage.channel) and (message.attachments == lastMessage.attachments) and not message.author.bot:
+        # check attachments (pictures)
+        if message.content == lastMessage.content:
+            try:
+                await message.author.send("Hi. I've deleted your latest message because it was identical to the message sent before it.")
+            except Exception:
+                pass
+            finally:
+                await message.delete()
+            return
     lastMessage = message
 
     for word in badWords:
