@@ -3,6 +3,10 @@ import os
 from neuralintents import GenericAssistant
 from RoleReactClient import RoleReactClient
 
+# Install neural stuff
+import nltk
+nltk.download('omw-1.4')
+
 # Setup Chat bot
 chatbot = GenericAssistant('intents.json')
 chatbot.train_model()
