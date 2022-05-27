@@ -1,0 +1,136 @@
+{
+    "intents": [
+        {
+            "tag": "unknown",
+            "patterns": [],
+            "responses": [
+                "Hmmm?"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "greetings",
+            "patterns": [
+                "hi",
+                "hello",
+                "Hey",
+                "What's up",
+                "Good day",
+                "Hi there",
+                "How are you",
+                "Hola",
+                "bonjour",
+                "Good morning"
+            ],
+            "responses": [
+                "Hi :smile:",
+                "What's up?",
+                "Good morning!"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "Nice chatting to you, bye",
+                "Till next time"
+            ],
+            "responses": [
+                "See you!",
+                "Have a huhntastic day",
+                "May the huhn be with you"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you",
+                "That's helpful",
+                "Awesome, thanks",
+                "Thanks for helping me",
+                "thx"
+            ],
+            "responses": [
+                "No problemo",
+                "Any time!",
+                "My pleasure",
+                "I'm just a humble Huhn helping where I can"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "age",
+            "patterns": [
+                "How old are you",
+                "what is your age",
+                "When were you born"
+            ],
+            "responses": [
+                "I was created in the future"
+            ]
+        },
+        {
+            "tag": "location",
+            "patterns": [
+                "Where do you live",
+                "What's your location",
+                "Where are you located",
+                "What country are you from"
+            ],
+            "responses": [
+                "I'm from the intergalactic information highway"
+            ]
+        },
+        {
+            "tag": "bad",
+            "patterns": [
+                "bad bot"
+            ],
+            "responses": [
+                ":cry:"
+            ]
+        },
+        {
+            "tag": "good",
+            "patterns": [
+                "good bot",
+                "good job"
+            ],
+            "responses": [
+                ":blush:"
+            ]
+        },
+        {
+            "tag": "help",
+            "patterns": [
+                "Can you help me?",
+                "I need your help",
+                "Help me!",
+                "Requesting help"
+            ],
+            "responses": [
+                "Perhaps",
+                "Yes",
+                "Maybe",
+                "No",
+                "I don't know",
+                "I'm not sure tbh",
+                "I rather not in this case",
+                "Ok fine...",
+                "Sure why not",
+                "Nah",
+                "Ask me again later"
+            ]
+        }
+    ]
+}

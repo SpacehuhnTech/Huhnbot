@@ -129,3 +129,7 @@ dmypy.json
 .pyre/
 
 token.txt
+
+*.h5
+
+*.pkl
