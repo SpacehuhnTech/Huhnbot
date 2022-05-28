@@ -5,27 +5,36 @@ import sys
 from neuralintents import GenericAssistant
 from RoleReactClient import RoleReactClient
 
-# Install neural stuff
-#import nltk
-#nltk.download('omw-1.4')
+MODEL_NAME = 'huhn'
 
 # Setup Chat bot
-chatbot = GenericAssistant('intents.json')
-#chatbot.train_model()
-#chatbot.save_model()
-chatbot.load_model('assistant_model')
+chatbot = GenericAssistant('intents.json', model_name=MODEL_NAME)
+
+def buildModel():
+    chatbot.train_model()
+    chatbot.save_model()
+
+try:
+    chatbot.load_model(MODEL_NAME)
+except:
+    buildModel()
+
 
 # Load Discord API Token from file
-# (if file doesn't exist, ask for it via standard input, and save it)
-TOKEN_PATH = 'token.txt'
+def loadToken():
+    TOKEN_PATH = 'token.txt'
+    token = ''
 
-if os.path.exists(TOKEN_PATH):
-    with open(TOKEN_PATH, 'r') as file:
-        token = file.read().replace('\n', '')
-else:
-    token = input("Discord Token:")
-    with open(TOKEN_PATH, 'w') as file:
-        file.write(token)
+    if os.path.exists(TOKEN_PATH):
+        with open(TOKEN_PATH, 'r') as file:
+            token = file.read().replace('\n', '')
+    # (if file doesn't exist, ask for it via standard input, and save it)
+    else:
+        token = input("Discord Token:")
+        with open(TOKEN_PATH, 'w') as file:
+            file.write(token)
+    
+    return token
 
 # This bot requires the members and reactions intents.
 intents = discord.Intents.default()
@@ -56,12 +65,12 @@ async def on_message(message):
         response = chatbot.request(message.content[8:])
         await message.channel.send(response)
 
-    if message.content.startswith("/huhnbot "):
+    if message.content.startswith("huhndebug "):
         if not fromMod(message):
-            await message.channel.send(f"You shall not pass!")
+            await message.channel.send(f"Hahahah. Nope!")
             return
 
-        cmd = message.content[9:]
+        cmd = message.content[10:]
         # ===== UPDATE ===== #
         if cmd == 'update':
             try:
@@ -69,13 +78,20 @@ async def on_message(message):
                 output = process.communicate()[0].decode("utf-8")
                 await message.channel.send(f"Huhnbot updated by {message.author} ```{output}```")
             except Exception as e:
-                await message.channel.send(f"git pull not working :( ```{e}```")
+                await message.channel.send(f"git pull not working :frowning: ```{e}```")
                 print("git pull not working :(")
         # ===== RESTART ===== #
         elif cmd == 'restart':
             os.execv(sys.executable, ['python'] + sys.argv)
+        # ===== BUILD ===== #
+        elif cmd == 'build':
+            await message.channel.send(f"Rebuilding... :rocket:")
+            buildModel()
+            await message.channel.send(f"Done :slight_smile:")
+            print("Finished rebuilding model")
+        # ===== 404 ===== #
         else:
             await message.channel.send(f"Don't know '{cmd}'")
            
 # Start Bot
-client.run(token)
+client.run(loadToken())
