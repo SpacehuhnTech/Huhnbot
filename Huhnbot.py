@@ -46,7 +46,7 @@ async def on_ready():
     message = "[Started] Logged in as {0.user}".format(client)
     print(message)
 
-    if sys.argv[1] != '-debug':
+    if len(sys.argv) == 1 or sys.argv[1] != '-debug':
         channel = client.get_channel(817402120063549451)
         await channel.send(message)
 
