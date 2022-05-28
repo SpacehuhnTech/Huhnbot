@@ -122,6 +122,22 @@
                 "Nah",
                 "Ask me again later"
             ]
+        },
+        {
+            "tag": "hmm",
+            "patterns": [
+                "Hmmm?",
+                "Hm",
+                "mh",
+                "mmmm"
+            ],
+            "responses": [
+                "Hmmm?",
+                "Hmm yes",
+                "Hmm no",
+                "Hmmm I don't think so",
+                "Hmmmmmmmmmmmmmmm!!"
+            ]
         }
     ]
 }
