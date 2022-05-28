@@ -5,9 +5,6 @@
             "patterns": [],
             "responses": [
                 "Hmmm?"
-            ],
-            "context": [
-                ""
             ]
         },
         {
@@ -43,9 +40,6 @@
                 "See you!",
                 "Have a huhntastic day",
                 "May the huhn be with you"
-            ],
-            "context": [
-                ""
             ]
         },
         {
@@ -63,9 +57,6 @@
                 "Any time!",
                 "My pleasure",
                 "I'm just a humble Huhn helping where I can"
-            ],
-            "context": [
-                ""
             ]
         },
         {
