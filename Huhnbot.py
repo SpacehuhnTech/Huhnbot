@@ -18,6 +18,8 @@ try:
 except:
     buildModel()
 
+if len(sys.argv) > 1 and sys.argv[1] == '-debug':
+    buildModel()
 
 # Load Discord API Token from file
 def loadToken():
@@ -60,8 +62,8 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    if message.content.startswith("huhnbot "):
-        response = chatbot.request(message.content[8:])
+    if "huhnbot" in message.content.lower() or client.user.mentioned_in(message):
+        response = chatbot.request(message.content)
         await message.channel.send(response)
 
     if message.content.startswith("huhndebug "):

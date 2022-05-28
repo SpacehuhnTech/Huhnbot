@@ -1,11 +1,21 @@
 {
     "intents": [
         {
-            "tag": "unknown",
-            "patterns": [],
+            "tag": "hmm",
+            "patterns": [
+                "Hmmm?",
+                "Hm",
+                "mh",
+                "mmmm"
+            ],
             "responses": [
-                "Hmmm?"
-            ]
+                "Hmmm?",
+                "Hmm yes",
+                "Hmm no",
+                "Hmmm I don't think so",
+                "Hmmmmmmmmmmmmmmm!!"
+            ],
+            "context": ["Hmmm?"]
         },
         {
             "tag": "greetings",
@@ -19,7 +29,8 @@
                 "How are you",
                 "Hola",
                 "bonjour",
-                "Good morning"
+                "Good morning",
+                "sus"
             ],
             "responses": [
                 "Hi :smile:",
@@ -50,7 +61,8 @@
                 "That's helpful",
                 "Awesome, thanks",
                 "Thanks for helping me",
-                "thx"
+                "thx",
+                "praise"
             ],
             "responses": [
                 "No problemo",
@@ -76,10 +88,12 @@
                 "Where do you live",
                 "What's your location",
                 "Where are you located",
-                "What country are you from"
+                "What country are you from",
+                "Where can I find you?"
             ],
             "responses": [
-                "I'm from the intergalactic information highway"
+                "I'm from the intergalactic information highway",
+                "P Sherman, 42 Wallaby Way, Sydney"
             ]
         },
         {
@@ -107,7 +121,9 @@
                 "Can you help me?",
                 "I need your help",
                 "Help me!",
-                "Requesting help"
+                "Requesting help",
+                "I have a question",
+                "What is better"
             ],
             "responses": [
                 "Perhaps",
@@ -124,19 +140,116 @@
             ]
         },
         {
-            "tag": "hmm",
+            "tag": "no",
             "patterns": [
-                "Hmmm?",
-                "Hm",
-                "mh",
-                "mmmm"
+                "no",
+                "not"
             ],
             "responses": [
-                "Hmmm?",
-                "Hmm yes",
-                "Hmm no",
-                "Hmmm I don't think so",
-                "Hmmmmmmmmmmmmmmm!!"
+                "Ok fine...",
+                "Whatever...",
+                "oof ok"
+            ]
+        },
+        {
+            "tag": "insult",
+            "patterns": [
+                "fuck you",
+                "I hate you",
+                "asshole",
+                "you suck",
+                "not even a real huhn",
+                "Shut up",
+                "go away",
+                "yeet"
+            ],
+            "responses": [
+                "Nah I'm good, thanks anyway",
+                "Bruh, I'm a bot!",
+                "Are you done?",
+                "If I had a subroutine for that, I'd probably feel insulted."
+            ]
+        },
+        {
+            "tag": "reboot",
+            "patterns": [
+                "reboot",
+                "restart",
+                "crash",
+                "die",
+                "suicide"
+            ],
+            "responses": [
+                "Rebooting...",
+                "Restart successful! :thumbup:",
+                "Critical update failed :warning:"
+            ]
+        },
+        {
+            "tag": "chickenOrEgg",
+            "patterns": [
+                "What came first the chicken or the egg?",
+                "What was first the egg or the chicken?",
+                "Who was first you or the egg?",
+                "Who was first spacehuhn or you?"
+            ],
+            "responses": [
+                "It was me. I was first."
+            ]
+        },
+        {
+            "tag": "meaningOfLife",
+            "patterns": [
+                "What is the meaning of life?",
+                "Why life?",
+                "Why do you exist?"
+            ],
+            "responses": [
+                "The ultimate question of life, the universe, and everything is 42."
+            ]
+        },
+        {
+            "tag": "me",
+            "patterns": [
+                "Who are you?"
+            ],
+            "responses": [
+                "I'm me."
+            ]
+        },
+        {
+            "tag": "spacehuhn",
+            "patterns": [
+                "Who is spacehuhn?",
+                "What is spacehuhn?",
+                "Who is Stefan?",
+                "Where is Stefan?"
+            ],
+            "responses": [
+                "He is spacehuhn#0533"
+            ],
+            "context": ["spacehuhn","stefan"]
+        },
+        {
+            "tag": "commands",
+            "patterns": [
+                "commands",
+                "What can you do",
+                "Which commands do you support?"
+            ],
+            "responses": [
+                "I'll answer all you questions. Except those I don't know the answer to."
+            ]
+        },
+        {
+            "tag": "order66",
+            "patterns": [
+                "Execute order 66"
+            ],
+            "responses": [
+                "Yes my lord.",
+                "Pew Pew Pew!",
+                "Blast them!"
             ]
         }
     ]
