@@ -3,7 +3,6 @@ import os
 import subprocess
 import sys
 from neuralintents import GenericAssistant
-from RoleReactClient import RoleReactClient
 
 MODEL_NAME = 'huhn'
 
@@ -37,9 +36,9 @@ def loadToken():
     return token
 
 # This bot requires the members and reactions intents.
-intents = discord.Intents.default()
-intents.members = True
-client = RoleReactClient(intents=intents)
+#intents = discord.Intents.default()
+#intents.members = True
+client = discord.Client()#intents=intents)
 
 # On Startup
 @client.event
