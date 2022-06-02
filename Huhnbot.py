@@ -62,18 +62,35 @@ async def on_message(message):
     if message.author == client.user:
         return
     
+    # [===== Message to Huhnbot =====] #
     if "huhnbot" in message.content.lower() or client.user.mentioned_in(message):
+        send_as_reply = False
+        
+        if message.content.lower() == "huhnbot" and message.reference is not None:
+            ref_message = await message.channel.fetch_message(message.reference.message_id)
+            if ref_message:
+                ping_message = message
+                message = ref_message
+                await ping_message.delete()
+                send_as_reply = True
+
         response = chatbot.request(message.content)
-        await message.channel.send(response)
+
+        if send_as_reply:
+            await message.reply(response)
+        else:
+            await message.channel.send(response)
+
         return
 
+    # [===== Debug =====] #
     if message.content.startswith("huhndebug "):
         if not fromMod(message):
             await message.channel.send(f"Hahahah. Nope!")
             return
 
         cmd = message.content[10:]
-        # ===== UPDATE ===== #
+        # [UPDATE]
         if cmd == 'update':
             try:
                 process = subprocess.Popen(["git", "pull"], stdout=subprocess.PIPE)
@@ -82,16 +99,16 @@ async def on_message(message):
             except Exception as e:
                 await message.channel.send(f"git pull not working :frowning: ```{e}```")
                 print("git pull not working :(")
-        # ===== RESTART ===== #
+        # [RESTART]
         elif cmd == 'restart':
             os.execv(sys.executable, ['python'] + sys.argv)
-        # ===== BUILD ===== #
+        # [BUILD]
         elif cmd == 'build':
             await message.channel.send(f"Rebuilding... :rocket:")
             buildModel()
             await message.channel.send(f"Done :slight_smile:")
             print("Finished rebuilding model")
-        # ===== 404 ===== #
+        # [404]
         else:
             await message.channel.send(f"Don't know '{cmd}'")
            
