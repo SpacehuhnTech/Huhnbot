@@ -65,6 +65,7 @@ async def on_message(message):
     if "huhnbot" in message.content.lower() or client.user.mentioned_in(message):
         response = chatbot.request(message.content)
         await message.channel.send(response)
+        return
 
     if message.content.startswith("huhndebug "):
         if not fromMod(message):

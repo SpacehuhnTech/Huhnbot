@@ -251,6 +251,150 @@
                 "Pew Pew Pew!",
                 "Blast them!"
             ]
+        },
+        {
+            "tag": "5ghz",
+            "patterns": [
+                "Can I deauth 5Ghz Wifi with nodemcu?",
+                "Are there any plans for a deauther that works on 5GHz & 2.4GHz?",
+                "does anybody know of a 5ghz version of doing what the deauther does?",
+                "when you gonna add 5Ghz network availability ?",
+                "Hi can anyone help me with building a 5ghz deauther?",
+                "me waiting for the 5ghz esp",
+                "hello, I use NodeMcu to stop wi-fi networks, is there a NodeMcu 5Ghz band?",
+                "Yeah I'm trying to buy one that works. I have the 2.4ghz one but I need a 5ghz one. I'm willing to pay someone who can build it for me.",
+                "Greetings! I'm interested in buying a portable 5ghz Deauther for research purposes, can someone make me one please???",
+                "Would a deauther work with 5ghz?",
+                "btw isn't there any way to make 5ghz deauther?",
+                "Is there any DSTIKE with 5ghz support?",
+                "but it would be nice to make/buy 5ghz deauther",
+                "how to deauther 5ghz networks",
+                "whem will there be a way to deauth 5ghz wifi"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/5ghz-deauther/"
+            ],
+            "context": ["5ghz","5g","5 ghz"]
+        },
+        {
+            "tag": "probe",
+            "patterns": [
+                "what does probe do",
+                "what is the probe attack?",
+                "What does a probe attack do?",
+                "Hey can someone give me an example of probe attack, like what does it do",
+                "yo what does probe do",
+                "how do i use probe ?",
+                "but idk if probe does anything neither for deauth",
+                "Also what even is a probe attack can",
+                "how does probe work?"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/probe-request/"
+            ],
+            "context": ["probe","probe request","probe attack"]
+        },
+        {
+            "tag": "deauthbroke",
+            "patterns": [
+                "i heard that deauth attacks work a couple of times then stop working",
+                "I need help idk why but its dont work",
+                "why does it stay at 0 help pls",
+                "My phone connected to it by wifi dont get disconnected ?",
+                "Why doesn't the deauther work",
+                "I have ran into an issue, my esp8266 is refusing to send out any deauthentication packets no matter what network I choose to attack",
+                "Ok. And why deauth attack is not working",
+                "Deauthing doesn't appear to work",
+                "yes, but deauth dosent work",
+                "My esp8266 isn't working, the deauth doesn't work",
+                "How do I make the deauth work"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/deauth-attack-not-working/"
+            ],
+            "context": ["dont work","doesn't work","not working"]
+        },
+        {
+            "tag": "deauthinstall",
+            "patterns": [
+                "how do install deauther?",
+                "Can someone tell me how deauther is installed?",
+                "Where can I find a Deauther installation tutorial"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/install-deauther-using-arduino/"
+            ],
+            "context": ["install deauther","installing deauther","deauther installation"]
+        },
+        {
+            "tag": "espdevboard",
+            "patterns": [
+                "If i want to make a deauther what would i have to buy ? like what esp ect.. ",
+                "If someone experienced could point me in the right direction for a good esp8266 for the deauther ",
+                "Hi, does anyone know if I can use deauther on this board?",
+                "Can I use this to make esp8266 Deauther",
+                "Hi, does anyone know if I can use deauther on this board?",
+                "which esp8266 dev board do you recomment?",
+                "is this board supported?"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/recommended-deuther-boards/"
+            ]
+        },
+        {
+            "tag": "esp32deauther",
+            "patterns": [
+                "can we use esp32?",
+                "is esp32 supported for deauther",
+                "can deauther run on esp32",
+                "when will deauther support esp32",
+                "when will esp32 be supported for deauther",
+                "how to use esp32 for deauther"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/esp32-deauther/"
+            ],
+            "context": ["esp32 deauther"]
+        },
+        {
+            "tag": "wifiduck",
+            "patterns": [
+                "Hello, could someone guide me on which pads to connect to make a wifiduck?",
+                "Can you help me building a wifiduck?",
+                "How do I make a wifiduck?",
+                "Where can I download wifiduck?",
+                "where can I find documentation for wifi duck?"
+            ],
+            "responses": [
+                "https://wifiduck.com/docs/about"
+            ],
+            "context": ["wifiduck", "wifi duck"]
+        },
+        {
+            "tag": "dstike",
+            "patterns": [
+                "I just bought DSTIKE V4 but i can’t perform bad usb watch , anyone knows how to find solutions ?",
+                "My dstike broke, can someone help me?",
+                "How do I update my DSTIKE?",
+                "A DSTIKE needs fix, someone help?",
+                "How to flash my DSTIKE?"
+            ],
+            "responses": [
+                "Hi! :wave: You asked something about DSTIKE. Spacehuhn Technologies has developed the software for some Deauther products. We recommend contacting the seller or manufacturer (i.e., DSTIKE) if you have hardware issues. But you can also try to reflash the firmware. We made a tutorial for the Deauther (https://blog.spacehuhn.com/install-deauther-using-arduino/) and the WiFi Duck (https://wifiduck.com/docs/category/software-installation). Hope that helps! :smiley:"
+            ],
+            "context": ["dstike", "travis lin"]
+        },
+        {
+            "tag": "bluetoothdeauther",
+            "patterns": [
+                "can you send deauth frames to bluetooth speaker?",
+                "can you deauth a bluetooth connection?",
+                "How to deauth a bluetooth speaker"
+            ],
+            "responses": [
+                "Deauthentication attacks only work against WiFi networks. Bluetooth is a different technology."
+            ],
+            "context": ["bluetooth"]
         }
     ]
 }
