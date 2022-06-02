@@ -101,7 +101,7 @@ async def on_message(message):
                 print("git pull not working :(")
         # [RESTART]
         elif cmd == 'restart':
-            os.execv(sys.executable, ['python'] + sys.argv)
+            os.execv(sys.executable, ['python3'] + sys.argv)
         # [BUILD]
         elif cmd == 'build':
             await message.channel.send(f"Rebuilding... :rocket:")
