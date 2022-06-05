@@ -67,6 +67,7 @@ async def on_message(message):
         send_as_reply = False
         
         if message.content.lower() == "huhnbot" and message.reference is not None:
+            # Reply to earlier message
             ref_message = await message.channel.fetch_message(message.reference.message_id)
             if ref_message:
                 ping_message = message
