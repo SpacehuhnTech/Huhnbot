@@ -8,18 +8,8 @@ MODEL_NAME = 'huhn'
 
 # Setup Chat bot
 chatbot = GenericAssistant('intents.json', model_name=MODEL_NAME)
-
-def buildModel():
-    chatbot.train_model()
-    chatbot.save_model()
-
-try:
-    chatbot.load_model(MODEL_NAME)
-except:
-    buildModel()
-
-if len(sys.argv) > 1 and sys.argv[1] == '-debug':
-    buildModel()
+chatbot.train_model()
+chatbot.save_model()
 
 # Load Discord API Token from file
 def loadToken():
@@ -114,13 +104,8 @@ async def on_message(message):
                 print("git pull not working :(")
         # [RESTART]
         elif cmd == 'restart':
+            await message.channel.send(f"Ok boss. Restarting now....")
             os.execv(sys.executable, ['python3'] + sys.argv)
-        # [BUILD]
-        elif cmd == 'build':
-            await message.channel.send(f"Rebuilding... :rocket:")
-            buildModel()
-            await message.channel.send(f"Done :slight_smile:")
-            print("Finished rebuilding model")
         # [404]
         else:
             await message.channel.send(f"Don't know '{cmd}'")
