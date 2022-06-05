@@ -399,13 +399,15 @@
         {
             "tag": "repeatedping",
             "patterns": [
-                "<@292704851480018945>",
-                "@spacehuhn"
+                "ping spacehuhn",
+                "repeated ping",
+                "don't ping people",
+                "annoying ping"
             ],
             "responses": [
                 "Hi. It appears that you have pinged @spacehuhn repeatedly. Please understand that this is a community server, not a personal support service. Getting pinged constantly is very annoying. Please stop, or you will be kicked or banned."
             ],
-            "context": ["<@292704851480018945>"]
+            "context": ["ping"]
         }
     ]
 }

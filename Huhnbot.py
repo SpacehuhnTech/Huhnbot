@@ -54,7 +54,11 @@ async def on_ready():
 
 # Helper functions
 def fromMod(message):
-    return message.author.top_role.permissions.administrator
+    is_admin = message.author.top_role.permissions.administrator
+    #is_admin = discord.utils.find(lambda r: r.name == "Admin", message.guild.roles) in message.author.roles
+    is_mod = discord.utils.find(lambda r: r.name == "Moderator", message.guild.roles) in message.author.roles
+
+    return is_admin or is_mod
 
 # On Message
 @client.event
@@ -65,17 +69,25 @@ async def on_message(message):
     # [===== Message to Huhnbot =====] #
     if "huhnbot" in message.content.lower() or client.user.mentioned_in(message):
         send_as_reply = False
+        message_content = message.content
         
-        if message.content.lower() == "huhnbot" and message.reference is not None:
-            # Reply to earlier message
+        # Reply to earlier message
+        if message.reference is not None:
+            pinged_message = message
             ref_message = await message.channel.fetch_message(message.reference.message_id)
-            if ref_message:
-                ping_message = message
-                message = ref_message
-                await ping_message.delete()
-                send_as_reply = True
 
-        response = chatbot.request(message.content)
+            # Update message to use referenced message
+            message = ref_message
+            send_as_reply = True
+            
+            # When pinged only with "huhnbot", react on original message
+            if message_content.lower() == "huhnbot" or not fromMod(pinged_message):
+                message_content = ref_message.content
+            
+            # Delete message where huhnbot was pinged
+            await pinged_message.delete()
+
+        response = chatbot.request(message_content)
 
         if send_as_reply:
             await message.reply(response)
