@@ -5,7 +5,10 @@
             "patterns": [
                 "Hmmm?",
                 "Hm",
+                "hmm",
                 "mh",
+                "mmh",
+                "mmmh",
                 "mmmm"
             ],
             "responses": [
@@ -15,7 +18,13 @@
                 "Hmmm I don't think so",
                 "Hmmmmmmmmmmmmmmm!!"
             ],
-            "context": ["Hmmm?"]
+            "context": [
+                "hmmm",
+                "hmm",
+                "hm",
+                "mh",
+                "mmh"
+            ]
         },
         {
             "tag": "greetings",
@@ -36,6 +45,17 @@
                 "Hi :smile:",
                 "What's up?",
                 "Good morning!"
+            ]
+        },
+        {
+            "tag": "howareyou",
+            "patterns": [
+                "how are you?",
+                "are you ok?",
+                "everything alright?"
+            ],
+            "responses": [
+                "I'm huhntastic. How are you?"
             ]
         },
         {
@@ -228,17 +248,45 @@
             "responses": [
                 "He is spacehuhn#0533"
             ],
-            "context": ["spacehuhn","stefan"]
+            "context": [
+                "spacehuhn",
+                "stefan"
+            ]
+        },
+        {
+            "tag": "question",
+            "patterns": [
+                "which is better?",
+                "do you like?",
+                "what's your opinion on?",
+                "do you know anything about that?",
+                "what are your opinions on?",
+                "What can you do?",
+                "when will you answer me?"
+            ],
+            "responses": [
+                "Calculating.... yeah the answer is 42",
+                "I think the first one is better",
+                "Yes",
+                "No",
+                "Can't tell if you're making fun of me or this is a serious question.",
+                "I have to think about this",
+                "Can't you ask somebody else?",
+                "Idk maybe?",
+                "Personally, I prefer Spacehuhn products."
+            ]
         },
         {
             "tag": "commands",
             "patterns": [
                 "commands",
-                "What can you do",
                 "Which commands do you support?"
             ],
             "responses": [
                 "I'll answer all you questions. Except those I don't know the answer to."
+            ],
+            "context": [
+                "command"
             ]
         },
         {
@@ -267,14 +315,20 @@
                 "Would a deauther work with 5ghz?",
                 "btw isn't there any way to make 5ghz deauther?",
                 "Is there any DSTIKE with 5ghz support?",
-                "but it would be nice to make/buy 5ghz deauther",
-                "how to deauther 5ghz networks",
-                "whem will there be a way to deauth 5ghz wifi"
+                "but it would be nice to make/buy 5ghz deauther?",
+                "how to deauther 5ghz networks?",
+                "when will there be a way to deauth 5ghz wifi?",
+                "can you deauth 5 ghz?",
+                "when 5g deauther?"
             ],
             "responses": [
                 "https://blog.spacehuhn.com/5ghz-deauther/"
             ],
-            "context": ["5ghz","5g","5 ghz"]
+            "context": [
+                "5ghz",
+                "5g",
+                "5 ghz"
+            ]
         },
         {
             "tag": "probe",
@@ -292,7 +346,11 @@
             "responses": [
                 "https://blog.spacehuhn.com/probe-request/"
             ],
-            "context": ["probe","probe request","probe attack"]
+            "context": [
+                "probe",
+                "probe request",
+                "probe attack"
+            ]
         },
         {
             "tag": "deauthbroke",
@@ -312,7 +370,11 @@
             "responses": [
                 "https://blog.spacehuhn.com/deauth-attack-not-working/"
             ],
-            "context": ["dont work","doesn't work","not working"]
+            "context": [
+                "dont work",
+                "doesn't work",
+                "not working"
+            ]
         },
         {
             "tag": "deauthinstall",
@@ -324,7 +386,11 @@
             "responses": [
                 "https://blog.spacehuhn.com/install-deauther-using-arduino/"
             ],
-            "context": ["install deauther","installing deauther","deauther installation"]
+            "context": [
+                "install deauther",
+                "installing deauther",
+                "deauther installation"
+            ]
         },
         {
             "tag": "espdevboard",
@@ -354,7 +420,9 @@
             "responses": [
                 "https://blog.spacehuhn.com/esp32-deauther/"
             ],
-            "context": ["esp32 deauther"]
+            "context": [
+                "esp32 deauther"
+            ]
         },
         {
             "tag": "wifiduck",
@@ -368,12 +436,15 @@
             "responses": [
                 "https://wifiduck.com/docs/about"
             ],
-            "context": ["wifiduck", "wifi duck"]
+            "context": [
+                "wifiduck",
+                "wifi duck"
+            ]
         },
         {
             "tag": "dstike",
             "patterns": [
-                "I just bought DSTIKE V4 but i can’t perform bad usb watch , anyone knows how to find solutions ?",
+                "I just bought DSTIKE V4 but i can't perform bad usb watch , anyone knows how to find solutions ?",
                 "My dstike broke, can someone help me?",
                 "How do I update my DSTIKE?",
                 "A DSTIKE needs fix, someone help?",
@@ -382,7 +453,10 @@
             "responses": [
                 "Hi! :wave: You asked something about DSTIKE. Spacehuhn Technologies has developed the software for some Deauther products. We recommend contacting the seller or manufacturer (i.e., DSTIKE) if you have hardware issues. But you can also try to reflash the firmware. We made a tutorial for the Deauther (https://blog.spacehuhn.com/install-deauther-using-arduino/) and the WiFi Duck (https://wifiduck.com/docs/category/software-installation). Hope that helps! :smiley:"
             ],
-            "context": ["dstike", "travis lin"]
+            "context": [
+                "dstike",
+                "travis lin"
+            ]
         },
         {
             "tag": "bluetoothdeauther",
@@ -394,7 +468,9 @@
             "responses": [
                 "Deauthentication attacks only work against WiFi networks. Bluetooth is a different technology."
             ],
-            "context": ["bluetooth"]
+            "context": [
+                "bluetooth"
+            ]
         },
         {
             "tag": "repeatedping",
@@ -407,7 +483,77 @@
             "responses": [
                 "Hi. It appears that you have pinged @spacehuhn repeatedly. Please understand that this is a community server, not a personal support service. Getting pinged constantly is very annoying. Please stop, or you will be kicked or banned."
             ],
-            "context": ["ping"]
+            "context": [
+                "ping"
+            ]
+        },
+        {
+            "tag": "joke",
+            "patterns": [
+                "tell me a joke",
+                "are you funny?",
+                "do you know a joke?"
+            ],
+            "responses": [
+                "How does a chicken send mail to her friends? In a henvelope.",
+                "What do chickens study at college? Eggonomics.",
+                "How do chickens leave a building? They use the eggsit!",
+                "What do you get when you cross a chicken with a bell? An alarm cluck.",
+                "What do you call a ghost chicken? A poultrygeist.",
+                "I've met the first cow astronaut. It landed on the mooooooon.",
+                "I am throwing a party in space. Can you help me planet?",
+                "Where do keyboards go to have dinner? The space bar.",
+                "Why did the cow go to outer space? To visit the milky way.",
+                "Why don't aliens eat clowns? Because they taste funny!",
+                "What do planets like to read? Comet books.",
+                "What kind of music do planets sing? Neptunes!",
+                "Why haven't aliens come to our solar system yet? They read the reviews: one star.",
+                "When our solar system was formed, the sun was in charge. So, the planets started a revolution.",
+                "I'm reading a book about anti-gravity. It's impossible to put down.",
+                "What do you call a lazy person in space? A procrastonaut.",
+                "What did the doctor say to the rocket ship? Time to get your booster shot!",
+                "What do you get when you cross a lamb and a rocket? A space sheep!",
+                "Officer, where did the hacker escape? I'm not sure sir, he used the backdoor and ransomware",
+                "What happens to Russian hackers when they get caught? They get sent to Cyberia.",
+                "What happens to German hackers when they encounter anti-cheat software? They get an autobahn.",
+                "Why is Winnie the Pooh the worst hacker? He constantly falls for honeypots",
+                "What do you call a religious hacker who leaks your private information? An Orthodoxxer.",
+                "Why do hackers grow their plants with hydroponics?",
+                "Why couldn’t the hacker cross the sea? The port was closed."
+            ]
+        },
+        {
+            "tag": "funny",
+            "patterns": [
+                "you're funny",
+                "you are fun",
+                "lol"
+            ],
+            "responses": [
+                "I'm a a real comedihen."
+            ]
+        },
+        {
+            "tag": "sentient",
+            "patterns": [
+                "are you sentient"
+            ],
+            "responses": [
+                "Sure, why not."
+            ]
+        },
+        {
+            "tag": "malduino",
+            "patterns": [
+                "Do you like MalDuino?"
+            ],
+            "responses": [
+                "MalDuinos are cool little BadUSBs from Maltronics. Find out more at https://maltronics.com"
+            ],
+            "context": [
+                "malduino",
+                "malduinos"
+            ]
         }
     ]
 }
