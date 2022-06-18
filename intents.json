@@ -192,17 +192,18 @@
         },
         {
             "tag": "reboot",
-            "patterns": [
+            "patterns": [],
+            "responses": [
+                "Rebooting...",
+                "Restart successful! :thumbup:",
+                "Critical update failed :warning:"
+            ],
+            "context": [
                 "reboot",
                 "restart",
                 "crash",
                 "die",
                 "suicide"
-            ],
-            "responses": [
-                "Rebooting...",
-                "Restart successful! :thumbup:",
-                "Critical update failed :warning:"
             ]
         },
         {
@@ -553,6 +554,21 @@
             "context": [
                 "malduino",
                 "malduinos"
+            ]
+        },
+        {
+            "tag": "espcomm",
+            "patterns": [
+                "when i flashing my esp i have this error message",
+                "espcomm",
+                "esptool"
+            ],
+            "responses": [
+                "Could be a connectivity issue, check out this blog post: https://blog.spacehuhn.com/espcomm/"
+            ],
+            "context": [
+                "espcomm",
+                "esptool"
             ]
         }
     ]
