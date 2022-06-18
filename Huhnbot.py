@@ -66,16 +66,18 @@ async def on_message(message):
             pinged_message = message
             ref_message = await message.channel.fetch_message(message.reference.message_id)
 
-            # Update message to use referenced message
-            message = ref_message
-            send_as_reply = True
-            
-            # When pinged only with "huhnbot", react on original message
-            if message_content.lower() == "huhnbot" or not fromMod(pinged_message):
-                message_content = ref_message.content
-            
-            # Delete message where huhnbot was pinged
-            await pinged_message.delete()
+            if str(ref_message.author) != 'huhnhuhnbot#5080' and str(ref_message.author) != 'huhnbot#5032':
+                print(ref_message.author)
+                # Update message to use referenced message
+                message = ref_message
+                send_as_reply = True
+                
+                # When pinged only with "huhnbot", react on original message
+                if message_content.lower() == "huhnbot" or not fromMod(pinged_message):
+                    message_content = ref_message.content
+                
+                # Delete message where huhnbot was pinged
+                await pinged_message.delete()
 
         response = chatbot.request(message_content)
 
