@@ -61,21 +61,15 @@ async def on_message(message):
         send_as_reply = False
         message_content = message.content
         
-        # Reply to earlier message
-        if message.reference is not None:
+        # When pinged only with "huhnbot", reply to earlier message and delete ping
+        if message.reference is not None and message_content.lower() == "huhnbot" and fromMod(message):
             pinged_message = message
             ref_message = await message.channel.fetch_message(message.reference.message_id)
 
-            if str(ref_message.author) != 'huhnhuhnbot#5080' and str(ref_message.author) != 'huhnbot#5032':
-                print(ref_message.author)
-                # Update message to use referenced message
-                message = ref_message
-                send_as_reply = True
-                
-                # When pinged only with "huhnbot", react on original message and delete ping
-                if message_content.lower() == "huhnbot" or not fromMod(pinged_message):
-                    message_content = ref_message.content
-                    await pinged_message.delete()
+            message = ref_message
+            send_as_reply = True
+            message_content = ref_message.content
+            await pinged_message.delete()
 
         response = chatbot.request(message_content)
 
