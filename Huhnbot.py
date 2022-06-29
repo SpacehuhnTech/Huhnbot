@@ -72,12 +72,10 @@ async def on_message(message):
                 message = ref_message
                 send_as_reply = True
                 
-                # When pinged only with "huhnbot", react on original message
+                # When pinged only with "huhnbot", react on original message and delete ping
                 if message_content.lower() == "huhnbot" or not fromMod(pinged_message):
                     message_content = ref_message.content
-                
-                # Delete message where huhnbot was pinged
-                await pinged_message.delete()
+                    await pinged_message.delete()
 
         response = chatbot.request(message_content)
 
