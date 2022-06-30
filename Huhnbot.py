@@ -59,7 +59,7 @@ async def on_message(message):
     # [===== Message to Huhnbot =====] #
     if "huhnbot" in message.content.lower() or client.user.mentioned_in(message):
         send_as_reply = False
-        message_content = message.content
+        message_content = message.content.lower().replace("huhnbot","")
         
         # When pinged only with "huhnbot", reply to earlier message and delete ping
         if message.reference is not None and message_content.lower() == "huhnbot" and fromMod(message):
@@ -68,7 +68,7 @@ async def on_message(message):
 
             message = ref_message
             send_as_reply = True
-            message_content = ref_message.content
+            message_content = ref_message.content.lower().replace("huhnbot","")
             await pinged_message.delete()
 
         response = chatbot.request(message_content)
