@@ -82,7 +82,11 @@
                 "Awesome, thanks",
                 "Thanks for helping me",
                 "thx",
-                "praise"
+                "praise",
+                "thanks for your answer",
+                "thanks for your reply",
+                "long live",
+                "Thanks for your help that really made me reconsider my life choices"
             ],
             "responses": [
                 "No problemo",
@@ -142,8 +146,7 @@
                 "I need your help",
                 "Help me!",
                 "Requesting help",
-                "I have a question",
-                "What is better"
+                "I have a question"
             ],
             "responses": [
                 "Perhaps",
@@ -181,7 +184,10 @@
                 "not even a real huhn",
                 "Shut up",
                 "go away",
-                "yeet"
+                "yeet",
+                "dumb",
+                "stupid",
+                "not the sharpest tool in the shed"
             ],
             "responses": [
                 "Nah I'm good, thanks anyway",
@@ -192,7 +198,14 @@
         },
         {
             "tag": "reboot",
-            "patterns": [],
+            "patterns": [
+                "shutdown -s -t 0 ... ok?",
+                "reboot",
+                "restart",
+                "crash",
+                "die",
+                "suicide"
+            ],
             "responses": [
                 "Rebooting...",
                 "Restart successful! :thumbup:",
@@ -263,7 +276,14 @@
                 "do you know anything about that?",
                 "what are your opinions on?",
                 "What can you do?",
-                "when will you answer me?"
+                "when will you answer me?",
+                "What is better?",
+                "Should I buy?",
+                "Should he add me?",
+                "Is he smart?",
+                "should it be a part?",
+                "will I stream tonight?",
+                "When is the next time Spacehuhn will stream?"
             ],
             "responses": [
                 "Calculating.... yeah the answer is 42",
@@ -274,7 +294,13 @@
                 "I have to think about this",
                 "Can't you ask somebody else?",
                 "Idk maybe?",
-                "Personally, I prefer Spacehuhn products."
+                "Let me think about this...",
+                "Hmmm",
+                "Have you tried asking someone who isn't a chatbot?",
+                "Naaaah",
+                "Heck yeah",
+                "You decide",
+                "On second thought, no."
             ]
         },
         {
@@ -541,6 +567,19 @@
             ],
             "responses": [
                 "Sure, why not."
+            ]
+        },
+        {
+            "tag": "maker",
+            "patterns": [
+                "who made you"
+            ],
+            "responses": [
+                "My creator made me.",
+                "I was always there, you just didn't know it.",
+                "Honestly, I don't know.",
+                "Idk Spacehuhn?",
+                "What do you \"made\" me?"
             ]
         },
         {
