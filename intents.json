@@ -328,6 +328,20 @@
             ]
         },
         {
+            "tag": "jammer",
+            "patterns": [
+                "Are deauthers illegal?",
+                "What is the difference between deauther and jammer?"
+            ],
+            "responses": [
+                "https://blog.spacehuhn.com/deauther-vs-jammer"
+            ],
+            "context": [
+                "jammer",
+                "jamming"
+            ]
+        },
+        {
             "tag": "5ghz",
             "patterns": [
                 "Can I deauth 5Ghz Wifi with nodemcu?",
